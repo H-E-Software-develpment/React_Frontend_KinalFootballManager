@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../shared/AuthContext.jsx';
 import { fieldService } from '../../services/fieldService.js';
+import { eventService } from '../../services/eventService.js';
 import Card from '../../components/Card.jsx';
 import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 import './StudentDashboard.css';
@@ -11,6 +12,8 @@ const StudentDashboard = () => {
   const navigate = useNavigate();
   const [fields, setFields] = useState([]);
   const [loadingFields, setLoadingFields] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(false);
 
   // Redirect admins to admin dashboard
   useEffect(() => {
@@ -34,6 +37,26 @@ const StudentDashboard = () => {
     };
 
     fetchFields();
+  }, []);
+
+  // Fetch upcoming events
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoadingEvents(true);
+        const response = await eventService.findEvents({}, 3, 0);
+        const upcomingEvents = response.event?.filter(event =>
+          new Date(event.dateTo) >= new Date()
+        ) || [];
+        setEvents(upcomingEvents);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      } finally {
+        setLoadingEvents(false);
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   return (
@@ -167,6 +190,44 @@ const StudentDashboard = () => {
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
+        </Card>
+
+        <Card title="Eventos Próximos" className="dashboard-card hover-lift">
+          <div className="card-description">
+            <p>Eventos deportivos programados:</p>
+            {loadingEvents ? (
+              <div className="events-loading">
+                <LoadingSpinner size="small" />
+                <span>Cargando eventos...</span>
+              </div>
+            ) : (
+              <div className="upcoming-events">
+                {events.length > 0 ? (
+                  events.map(event => (
+                    <div key={event.eid} className="event-item-mini">
+                      <div className="event-icon">🏆</div>
+                      <div className="event-details-mini">
+                        <h4>{event.name}</h4>
+                        <p>{new Date(event.dateFrom).toLocaleDateString('es-GT', {
+                          month: 'long',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}</p>
+                      </div>
+                      <div className="event-status-mini">
+                        <span className="status-upcoming-mini">Próximo</span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-events-mini">
+                    <span>No hay eventos próximos programados</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </Card>
 
         <Card title="Actividad Reciente" className="dashboard-card hover-lift">

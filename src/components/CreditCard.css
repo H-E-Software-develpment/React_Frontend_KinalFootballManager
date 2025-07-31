@@ -27,10 +27,14 @@
   padding: 1.5rem;
   color: white;
   font-family: 'Courier New', monospace;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 16px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-face::before {
@@ -40,11 +44,38 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, 
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.05) 100%);
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.05) 100%);
   pointer-events: none;
+}
+
+.card-face::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .card-front {
@@ -75,7 +106,10 @@
   font-weight: bold;
   font-style: italic;
   color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.1);
+  letter-spacing: 1px;
 }
 
 .mastercard-logo {
@@ -84,38 +118,48 @@
 }
 
 .mastercard-logo .circle {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   margin-right: -8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .mastercard-logo .red {
-  background: #eb001b;
+  background: linear-gradient(135deg, #eb001b, #ff1744);
   z-index: 1;
 }
 
 .mastercard-logo .yellow {
-  background: #f79e1b;
+  background: linear-gradient(135deg, #f79e1b, #ffa726);
   z-index: 0;
 }
 
 .flip-icon {
-  background: rgba(255, 255, 255, 0.2);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .flip-icon:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  transform: scale(1.1) rotate(180deg);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Chip */
@@ -126,10 +170,15 @@
 .chip {
   width: 35px;
   height: 28px;
-  background: linear-gradient(45deg, #ffd700, #ffed4e);
-  border-radius: 4px;
+  background:
+    linear-gradient(145deg, #ffd700, #ffed4e, #ffd700),
+    linear-gradient(45deg, #daa520, #b8860b);
+  border-radius: 6px;
   position: relative;
-  border: 1px solid #daa520;
+  border: 1px solid #b8860b;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .chip::before {
@@ -139,9 +188,23 @@
   left: 3px;
   right: 3px;
   bottom: 3px;
-  background: linear-gradient(45deg, #ffd700, #ffed4e);
-  border-radius: 2px;
+  background:
+    linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+  border-radius: 3px;
   border: 1px solid #b8860b;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chip::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border-radius: 2px;
 }
 
 /* Card Inputs */
@@ -156,21 +219,26 @@
   padding: 0.5rem 0;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: none;
 }
 
 .card-input:focus,
 .card-input.focused {
-  border-bottom-color: rgba(255, 255, 255, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .card-input.error {
-  border-bottom-color: #ef4444;
+  border-bottom-color: #ff6b6b;
   animation: shake 0.5s ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
 }
 
 /* Card Number */
@@ -179,12 +247,37 @@
   flex: 1;
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.card-number::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background:
+    linear-gradient(45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-number:hover::before {
+  opacity: 1;
 }
 
 .number-input {
   font-size: 1.3rem;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-align: center;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Card Info */
@@ -236,30 +329,85 @@
 /* Back of Card */
 .magnetic-stripe {
   width: 100%;
-  height: 40px;
-  background: linear-gradient(90deg, #000, #333, #000);
+  height: 45px;
+  background:
+    linear-gradient(90deg,
+      #000 0%,
+      #2d2d2d 15%,
+      #4a4a4a 30%,
+      #2d2d2d 50%,
+      #4a4a4a 70%,
+      #2d2d2d 85%,
+      #000 100%);
   margin: 1rem -1.5rem 1.5rem -1.5rem;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.magnetic-stripe::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 2px
+    );
 }
 
 .signature-panel {
-  background: rgba(255, 255, 255, 0.9);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.9));
   color: #333;
   padding: 0.75rem;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
 .signature-label {
   font-size: 0.7rem;
   margin-bottom: 0.5rem;
   color: #666;
+  font-weight: 500;
 }
 
 .signature-area {
-  height: 25px;
-  background: white;
-  border-radius: 2px;
-  border: 1px solid #ddd;
+  height: 28px;
+  background:
+    linear-gradient(135deg, #ffffff, #f8f8f8);
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.signature-area::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ddd,
+      #ddd 5px,
+      transparent 5px,
+      transparent 10px
+    );
 }
 
 .cvv-section {
@@ -273,13 +421,20 @@
   font-size: 0.8rem;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .cvv-input-wrapper {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.5rem;
-  border-radius: 4px;
-  min-width: 60px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+  padding: 0.6rem;
+  border-radius: 6px;
+  min-width: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .cvv-input {
@@ -288,6 +443,7 @@
   letter-spacing: 2px;
   border-bottom: none !important;
   padding: 0;
+  font-weight: bold;
 }
 
 .back-flip {
@@ -300,8 +456,13 @@
   margin-top: auto;
   font-size: 0.65rem;
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.8;
   font-style: italic;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Animations */

@@ -230,6 +230,86 @@
   font-weight: 500;
 }
 
+/* Upcoming Events */
+.upcoming-events {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.event-item-mini {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(191, 215, 234, 0.1);
+  border: 1px solid rgba(116, 140, 171, 0.2);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.event-item-mini:hover {
+  background: rgba(191, 215, 234, 0.15);
+  border-color: #748CAB;
+  transform: translateY(-1px);
+}
+
+.event-icon {
+  font-size: 1.5rem;
+  color: #214D74;
+}
+
+.event-details-mini {
+  flex: 1;
+}
+
+.event-details-mini h4 {
+  color: #08183D;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.event-details-mini p {
+  color: #748CAB;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.event-status-mini {
+  text-align: right;
+}
+
+.status-upcoming-mini {
+  color: #3b82f6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 4px;
+}
+
+.events-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: #748CAB;
+  font-size: 0.9rem;
+}
+
+.no-events-mini {
+  text-align: center;
+  padding: 2rem;
+  color: #748CAB;
+  font-style: italic;
+  background: rgba(116, 140, 171, 0.05);
+  border-radius: 8px;
+}
+
 /* Help Links */
 .help-links {
   display: flex;

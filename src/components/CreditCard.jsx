@@ -69,13 +69,13 @@ const CreditCard = ({
 
   const getBankColor = () => {
     const bankColors = {
-      'GYT CONTINENTAL': 'linear-gradient(135deg, #1e3a8a, #3b82f6)',
-      'BANCO INDUSTRIAL': 'linear-gradient(135deg, #7c2d12, #ea580c)',
-      'BANRURAL': 'linear-gradient(135deg, #166534, #22c55e)',
-      'BAC': 'linear-gradient(135deg, #dc2626, #f87171)',
-      'BANCO PROMERICA': 'linear-gradient(135deg, #7c3aed, #a855f7)',
-      'BAM': 'linear-gradient(135deg, #0891b2, #06b6d4)',
-      'FICOHSA': 'linear-gradient(135deg, #b91c1c, #ef4444)'
+      'GYT CONTINENTAL': 'linear-gradient(135deg, #000000, #2d2d2d, #000000)',
+      'BANCO INDUSTRIAL': 'linear-gradient(135deg, #0055A4, #0066cc, #004499)',
+      'BANRURAL': 'linear-gradient(135deg, #137440, #16a085, #0e5d32)',
+      'BAC': 'linear-gradient(135deg, #003366, #004080, #002855)',
+      'BANCO PROMERICA': 'linear-gradient(135deg, #1e40af, #3b82f6, #1d4ed8)',
+      'BAM': 'linear-gradient(135deg, #8B357F, #a855f7, #7c2d73)',
+      'FICOHSA': 'linear-gradient(135deg, #7f1d1d, #dc2626, #991b1b)'
     };
     return bankColors[formData.bank] || 'linear-gradient(135deg, #374151, #6b7280)';
   };

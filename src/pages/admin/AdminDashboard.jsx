@@ -192,6 +192,24 @@ const AdminDashboard = () => {
           </a>
         </Card>
 
+        <Card title="Gestión de Eventos" className="dashboard-card hover-lift">
+          <div className="card-description">
+            <p>Organiza y administra eventos deportivos. Crea torneos, partidos y actividades especiales.</p>
+            <div className="card-features">
+              <span className="feature-tag">Crear eventos</span>
+              <span className="feature-tag">Programar fechas</span>
+              <span className="feature-tag">Gestionar torneos</span>
+              <span className="feature-tag">Estado en tiempo real</span>
+            </div>
+          </div>
+          <a href="/events" className="card-link">
+            <span>Gestionar Eventos</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </Card>
+
         <Card title="Mi Perfil Administrativo" className="dashboard-card hover-lift">
           <div className="card-description">
             <p>Gestiona tu información personal y configuración de administrador.</p>

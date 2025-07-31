@@ -68,13 +68,13 @@ const PaymentsPage = () => {
 
   const getBankColor = (bank) => {
     const bankColors = {
-      'GYT CONTINENTAL': '#1e3a8a',
-      'BANCO INDUSTRIAL': '#ea580c',
-      'BANRURAL': '#22c55e',
-      'BAC': '#dc2626',
-      'BANCO PROMERICA': '#7c3aed',
-      'BAM': '#0891b2',
-      'FICOHSA': '#b91c1c'
+      'GYT CONTINENTAL': '#000000',
+      'BANCO INDUSTRIAL': '#0055A4',
+      'BANRURAL': '#137440',
+      'BAC': '#003366',
+      'BANCO PROMERICA': '#1e40af',
+      'BAM': '#8B357F',
+      'FICOHSA': '#7f1d1d'
     };
     return bankColors[bank] || '#6b7280';
   };
