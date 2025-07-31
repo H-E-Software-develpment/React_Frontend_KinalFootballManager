@@ -6,6 +6,7 @@ import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 import InteractiveBackground from '../components/InteractiveBackground.jsx';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({

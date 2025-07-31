@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './InteractiveBackground.css';
 
 const InteractiveBackground = () => {
   const containerRef = useRef(null);

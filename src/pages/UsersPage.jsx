@@ -4,6 +4,7 @@ import Input from '../components/Input.jsx';
 import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import './UsersPage.css';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);

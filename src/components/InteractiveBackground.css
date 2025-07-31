@@ -1,0 +1,95 @@
+/* Interactive Background Styles */
+.interactive-bg-new {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #08183D 0%, #153664 50%, #214D74 100%);
+  overflow: hidden;
+}
+
+/* Particle Container */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Reactive Particles */
+.particle-reactive {
+  position: absolute;
+  background: rgba(191, 215, 234, 0.6);
+  border-radius: 50%;
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(191, 215, 234, 0.3);
+}
+
+.particle-active {
+  background: rgba(191, 215, 234, 1) !important;
+  box-shadow: 0 0 20px rgba(191, 215, 234, 0.8) !important;
+}
+
+/* Background Floating Shapes */
+.bg-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float-shape 15s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  background: rgba(191, 215, 234, 0.3);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  background: rgba(116, 140, 171, 0.3);
+  top: 60%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  background: rgba(33, 77, 116, 0.3);
+  bottom: 20%;
+  left: 60%;
+  animation-delay: 10s;
+}
+
+@keyframes float-shape {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.1;
+  }
+  25% { 
+    transform: translateY(-30px) translateX(20px) rotate(90deg); 
+    opacity: 0.2;
+  }
+  50% { 
+    transform: translateY(-20px) translateX(-20px) rotate(180deg); 
+    opacity: 0.15;
+  }
+  75% { 
+    transform: translateY(10px) translateX(30px) rotate(270deg); 
+    opacity: 0.1;
+  }
+}

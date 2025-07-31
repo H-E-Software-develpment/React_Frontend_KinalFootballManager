@@ -6,6 +6,7 @@ import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 import InteractiveBackground from '../components/InteractiveBackground.jsx';
+import './LoginPage.css';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -38,11 +39,12 @@ const LoginPage = () => {
 
     try {
       const response = await login(formData.email, formData.password);
+
       // Redirect based on user role
       if (response.user.role === 'ADMINSTRATOR') {
-        navigate('/admin-dashboard');
+        navigate('/admin-dashboard', { replace: true });
       } else {
-        navigate('/student-dashboard');
+        navigate('/student-dashboard', { replace: true });
       }
     } catch (error) {
       setErrors({

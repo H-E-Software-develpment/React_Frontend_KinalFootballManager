@@ -1,0 +1,162 @@
+/* Admin Dashboard Styles */
+.admin-dashboard {
+  padding: 1rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Statistics Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(135deg, #08183D 0%, #153664 50%, #214D74 100%) 1;
+  transition: all 0.3s ease;
+}
+
+.stat-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.users-icon {
+  background: linear-gradient(135deg, #153664, #08183D);
+}
+
+.students-icon {
+  background: linear-gradient(135deg, #214D74, #748CAB);
+}
+
+.admins-icon {
+  background: linear-gradient(135deg, #08183D, #153664);
+}
+
+.stat-info h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #08183D;
+  margin-bottom: 0.25rem;
+}
+
+.stat-info p {
+  color: #748CAB;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Admin Info Styles */
+.admin-info {
+  margin-top: 1rem;
+}
+
+/* Recent Users */
+.recent-users {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recent-user-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(116, 140, 171, 0.05);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.recent-user-item:hover {
+  background: rgba(116, 140, 171, 0.1);
+  transform: translateX(5px);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #08183D 0%, #153664 50%, #214D74 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #08183D;
+  font-size: 0.9rem;
+}
+
+.user-role {
+  font-size: 0.8rem;
+  color: #748CAB;
+}
+
+.no-recent {
+  text-align: center;
+  color: #748CAB;
+  font-style: italic;
+  padding: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-content {
+    gap: 1rem;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stat-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .recent-user-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .user-details {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-info h3 {
+    font-size: 1.25rem;
+  }
+}

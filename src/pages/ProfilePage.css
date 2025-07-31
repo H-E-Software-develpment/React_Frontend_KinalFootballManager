@@ -1,0 +1,78 @@
+/* Profile Page Styles */
+.profile-page {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.profile-tabs {
+  display: flex;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem 2rem;
+  border: none;
+  background: none;
+  color: #748CAB;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  background: linear-gradient(135deg, #153664 0%, #08183D 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-submit-btn {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .profile-tabs {
+    flex-direction: column;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  
+  .tab-button {
+    border-radius: 0;
+    border-bottom: 1px solid #BFD7EA;
+    margin: 0;
+  }
+
+  .tab-button:first-child {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .tab-button:last-child {
+    border-radius: 0 0 12px 12px;
+    border-bottom: none;
+  }
+}

@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../shared/AuthContext.jsx';
 import Button from './Button.jsx';
+import './Layout.css';
 
 const Layout = () => {
   const { user, logout, isAdmin } = useAuth();

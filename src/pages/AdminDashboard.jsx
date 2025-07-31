@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../shared/AuthContext.jsx';
 import { userService } from '../services/userService.js';
 import Card from '../components/Card.jsx';
 import Button from '../components/Button.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalStudents: 0,
@@ -14,6 +17,13 @@ const AdminDashboard = () => {
     recentUsers: []
   });
   const [loading, setLoading] = useState(true);
+
+  // Redirect students to student dashboard
+  useEffect(() => {
+    if (user && user.role !== 'ADMINSTRATOR') {
+      navigate('/student-dashboard', { replace: true });
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     fetchDashboardStats();

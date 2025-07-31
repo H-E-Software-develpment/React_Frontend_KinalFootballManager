@@ -4,6 +4,7 @@ import Input from '../components/Input.jsx';
 import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import './ProfilePage.css';
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('info');
