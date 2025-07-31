@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { userService } from '../services/userService.js';
-import Input from '../components/Input.jsx';
-import Button from '../components/Button.jsx';
-import Card from '../components/Card.jsx';
-import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import { userService } from '../../services/userService.js';
+import Input from '../../components/Input.jsx';
+import Button from '../../components/Button.jsx';
+import Card from '../../components/Card.jsx';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 import './UsersPage.css';
 
 const UsersPage = () => {
@@ -168,7 +168,7 @@ const UsersPage = () => {
               >
                 <option value="">Todos los roles</option>
                 <option value="STUDENT">Estudiante</option>
-                <option value="ADMINSTRATOR">Administrador</option>
+                <option value="ADMINISTRATOR">Administrador</option>
               </select>
             </div>
           </div>
@@ -244,7 +244,7 @@ const UsersPage = () => {
                             className="input-field"
                           >
                             <option value="STUDENT">Estudiante</option>
-                            <option value="ADMINSTRATOR">Administrador</option>
+                            <option value="ADMINISTRATOR">Administrador</option>
                           </select>
                         </div>
                       </div>
@@ -264,7 +264,7 @@ const UsersPage = () => {
                         <p><strong>Email:</strong> {user.email}</p>
                         <p><strong>Teléfono:</strong> {user.phone}</p>
                         {user.academic && <p><strong>Código:</strong> {user.academic}</p>}
-                        <p><strong>Rol:</strong> {user.role === 'ADMINSTRATOR' ? 'Administrador' : 'Estudiante'}</p>
+                        <p><strong>Rol:</strong> {user.role === 'ADMINISTRATOR' ? 'Administrador' : 'Estudiante'}</p>
                         <p><strong>Fecha:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
                       </div>
                       <div className="user-actions">

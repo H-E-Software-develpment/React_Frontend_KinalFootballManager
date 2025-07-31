@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../shared/AuthContext.jsx';
-import Input from '../components/Input.jsx';
-import Button from '../components/Button.jsx';
-import Card from '../components/Card.jsx';
-import LoadingSpinner from '../components/LoadingSpinner.jsx';
-import InteractiveBackground from '../components/InteractiveBackground.jsx';
+import { useAuth } from '../../shared/AuthContext.jsx';
+import Input from '../../components/Input.jsx';
+import Button from '../../components/Button.jsx';
+import Card from '../../components/Card.jsx';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
+import InteractiveBackground from '../../components/InteractiveBackground.jsx';
 import './RegisterPage.css';
 
 const RegisterPage = () => {

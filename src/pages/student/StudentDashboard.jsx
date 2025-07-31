@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../shared/AuthContext.jsx';
-import Card from '../components/Card.jsx';
+import { useAuth } from '../../shared/AuthContext.jsx';
+import Card from '../../components/Card.jsx';
 import './StudentDashboard.css';
 
 const StudentDashboard = () => {
@@ -10,7 +10,7 @@ const StudentDashboard = () => {
 
   // Redirect admins to admin dashboard
   useEffect(() => {
-    if (user && user.role === 'ADMINSTRATOR') {
+    if (user && user.role === 'ADMINISTRATOR') {
       navigate('/admin-dashboard', { replace: true });
     }
   }, [user, navigate]);

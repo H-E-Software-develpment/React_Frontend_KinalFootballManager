@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginPage from './pages/LoginPage.jsx';
-import RegisterPage from './pages/RegisterPage.jsx';
-import AdminDashboard from './pages/AdminDashboard.jsx';
-import StudentDashboard from './pages/StudentDashboard.jsx';
+import LoginPage from './pages/auth/LoginPage.jsx';
+import RegisterPage from './pages/auth/RegisterPage.jsx';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
+import StudentDashboard from './pages/student/StudentDashboard.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
-import UsersPage from './pages/UsersPage.jsx';
+import UsersPage from './pages/admin/UsersPage.jsx';
 import Layout from './components/Layout.jsx';
 import ProtectedRoute from './shared/ProtectedRoute.jsx';
 

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../shared/AuthContext.jsx';
-import { userService } from '../services/userService.js';
-import Card from '../components/Card.jsx';
-import Button from '../components/Button.jsx';
-import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import { useAuth } from '../../shared/AuthContext.jsx';
+import { userService } from '../../services/userService.js';
+import Card from '../../components/Card.jsx';
+import Button from '../../components/Button.jsx';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -17,31 +17,29 @@ const AdminDashboard = () => {
     recentUsers: []
   });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Redirect students to student dashboard
   useEffect(() => {
-    if (user && user.role !== 'ADMINSTRATOR') {
+    if (user && user.role !== 'ADMINISTRATOR') {
       navigate('/student-dashboard', { replace: true });
     }
   }, [user, navigate]);
 
-  useEffect(() => {
-    fetchDashboardStats();
-  }, []);
-
-  const fetchDashboardStats = async () => {
+  const fetchDashboardStats = useCallback(async () => {
     try {
       setLoading(true);
-      
+      setError(null);
+
       // Get all users count
       const allUsers = await userService.findUsers({}, 100, 0);
-      
+
       // Get students count
       const students = await userService.findUsers({ role: 'STUDENT' }, 100, 0);
-      
+
       // Get admins count
-      const admins = await userService.findUsers({ role: 'ADMINSTRATOR' }, 100, 0);
-      
+      const admins = await userService.findUsers({ role: 'ADMINISTRATOR' }, 100, 0);
+
       // Get recent users (last 5)
       const recent = await userService.findUsers({}, 5, 0);
 
@@ -53,10 +51,26 @@ const AdminDashboard = () => {
       });
     } catch (error) {
       console.error('Error fetching dashboard stats:', error);
+      console.error('Error details:', error.message || error);
+      if (error.response) {
+        console.error('Response status:', error.response.status);
+        console.error('Response data:', error.response.data);
+      }
+
+      // Set user-friendly error message
+      const errorMessage = error.message ||
+                          error.response?.data?.message ||
+                          error.response?.data?.error ||
+                          'Error al cargar estadísticas del dashboard';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, [fetchDashboardStats]);
 
   if (loading) {
     return <LoadingSpinner size="large" />;
@@ -68,6 +82,27 @@ const AdminDashboard = () => {
         <h1>Panel de Administrador</h1>
         <p>Bienvenido, {user?.name}. Gestiona el sistema completo desde aquí.</p>
       </div>
+
+      {error && (
+        <div className="alert alert-error" style={{
+          backgroundColor: '#fee',
+          border: '1px solid #f88',
+          padding: '12px',
+          borderRadius: '4px',
+          marginBottom: '20px',
+          color: '#c33'
+        }}>
+          <strong>Error:</strong> {error}
+          <Button
+            variant="outline"
+            size="small"
+            onClick={fetchDashboardStats}
+            style={{ marginLeft: '10px' }}
+          >
+            Reintentar
+          </Button>
+        </div>
+      )}
 
       {/* Statistics Cards */}
       <div className="stats-grid">
@@ -177,7 +212,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="user-details">
                       <span className="user-name">{recentUser.name}</span>
-                      <span className="user-role">{recentUser.role === 'ADMINSTRATOR' ? 'Admin' : 'Estudiante'}</span>
+                      <span className="user-role">{recentUser.role === 'ADMINISTRATOR' ? 'Admin' : 'Estudiante'}</span>
                     </div>
                   </div>
                 ))
