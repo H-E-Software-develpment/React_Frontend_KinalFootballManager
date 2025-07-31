@@ -1,0 +1,283 @@
+.add-payment-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #BFD7EA;
+}
+
+.header-content h1 {
+  color: #08183D;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.header-content p {
+  color: #748CAB;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.back-btn {
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #BFD7EA;
+  color: #08183D;
+  border: 1px solid #748CAB;
+}
+
+.alert-error {
+  background-color: #fee;
+  color: #c33;
+  border: 1px solid #f88;
+}
+
+.payment-form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.card-preview-section {
+  position: sticky;
+  top: 2rem;
+}
+
+.card-instructions {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(191, 215, 234, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(116, 140, 171, 0.2);
+}
+
+.card-instructions p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  color: #153664;
+  font-size: 0.9rem;
+}
+
+.instruction-icon {
+  font-size: 1.1rem;
+}
+
+.form-section {
+  min-height: 600px;
+}
+
+.payment-form-card {
+  height: fit-content;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.split-fields {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.cvv-field {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.cvv-help {
+  margin-bottom: 1.5rem;
+}
+
+.cvv-help-icon {
+  background: #748CAB;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cvv-help-icon:hover {
+  background: #214D74;
+  transform: scale(1.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(116, 140, 171, 0.1);
+}
+
+.submit-btn {
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Input styling overrides */
+.input-group {
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #BFD7EA;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: white;
+  color: #08183D;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #748CAB;
+  box-shadow: 0 0 0 3px rgba(116, 140, 171, 0.1);
+}
+
+.input-field.input-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #08183D;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .payment-form-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .card-preview-section {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-payment-page {
+    padding: 1rem;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .back-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .split-fields {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .cvv-field {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .cvv-help {
+    margin-bottom: 0;
+    align-self: flex-end;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .payment-form-container {
+    gap: 1.5rem;
+  }
+  
+  .card-instructions p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Loading state */
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Animation for form errors */
+.input-field.input-error {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}

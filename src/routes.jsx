@@ -6,6 +6,8 @@ import StudentDashboard from './pages/student/StudentDashboard.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import UsersPage from './pages/admin/UsersPage.jsx';
 import FieldsPage from './pages/admin/FieldsPage.jsx';
+import PaymentsPage from './pages/student/PaymentsPage.jsx';
+import AddPaymentPage from './pages/student/AddPaymentPage.jsx';
 import Layout from './components/Layout.jsx';
 import ProtectedRoute from './shared/ProtectedRoute.jsx';
 
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
             <FieldsPage />
           </ProtectedRoute>
         )
+      },
+      {
+        path: 'payments',
+        element: <PaymentsPage />
+      },
+      {
+        path: 'add-payment',
+        element: <AddPaymentPage />
       }
     ]
   }

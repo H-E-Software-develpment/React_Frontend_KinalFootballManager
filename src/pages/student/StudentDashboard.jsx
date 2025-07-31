@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../shared/AuthContext.jsx';
+import { fieldService } from '../../services/fieldService.js';
 import Card from '../../components/Card.jsx';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 import './StudentDashboard.css';
 
 const StudentDashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [fields, setFields] = useState([]);
+  const [loadingFields, setLoadingFields] = useState(false);
 
   // Redirect admins to admin dashboard
   useEffect(() => {
@@ -14,6 +18,23 @@ const StudentDashboard = () => {
       navigate('/admin-dashboard', { replace: true });
     }
   }, [user, navigate]);
+
+  // Fetch available fields
+  useEffect(() => {
+    const fetchFields = async () => {
+      try {
+        setLoadingFields(true);
+        const response = await fieldService.findFields({}, 5, 0);
+        setFields(response.field || []);
+      } catch (error) {
+        console.error('Error fetching fields:', error);
+      } finally {
+        setLoadingFields(false);
+      }
+    };
+
+    fetchFields();
+  }, []);
 
   return (
     <div className="student-dashboard">
@@ -58,27 +79,66 @@ const StudentDashboard = () => {
           </div>
         </Card>
 
-        <Card title="Reservas del Campo" className="dashboard-card hover-lift">
+        <Card title="Campos Disponibles" className="dashboard-card hover-lift">
           <div className="card-description">
-            <p>Próximamente: Sistema de reservas del campo de fútbol.</p>
-            <div className="feature-preview">
-              <div className="preview-item">
-                <div className="preview-icon">📅</div>
-                <span>Horarios disponibles</span>
+            <p>Campos de fútbol disponibles para reservar:</p>
+            {loadingFields ? (
+              <div className="fields-loading">
+                <LoadingSpinner size="small" />
+                <span>Cargando campos...</span>
               </div>
-              <div className="preview-item">
-                <div className="preview-icon">⚽</div>
-                <span>Reservar campo</span>
+            ) : (
+              <div className="available-fields">
+                {fields.length > 0 ? (
+                  fields.map(field => (
+                    <div key={field.fid} className="field-item">
+                      <div className="field-icon">⚽</div>
+                      <div className="field-details">
+                        <h4>{field.name}</h4>
+                        {field.description && <p>{field.description}</p>}
+                      </div>
+                      <div className="field-status">
+                        <span className="status-available">Disponible</span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-fields">
+                    <span>No hay campos disponibles en este momento</span>
+                  </div>
+                )}
               </div>
-              <div className="preview-item">
-                <div className="preview-icon">📋</div>
-                <span>Mis reservas</span>
-              </div>
-            </div>
-            <div className="coming-soon">
-              <span className="coming-soon-badge">Próximamente</span>
+            )}
+            <div className="reservation-note">
+              <span className="note-badge">Próximamente: Sistema de reservas completo</span>
             </div>
           </div>
+        </Card>
+
+        <Card title="Métodos de Pago" className="dashboard-card hover-lift">
+          <div className="card-description">
+            <p>Gestiona tus tarjetas de débito y crédito de forma segura.</p>
+            <div className="payment-features">
+              <div className="payment-feature">
+                <div className="feature-icon">💳</div>
+                <span>Agregar tarjetas</span>
+              </div>
+              <div className="payment-feature">
+                <div className="feature-icon">🔒</div>
+                <span>Información segura</span>
+              </div>
+              <div className="payment-feature">
+                <div className="feature-icon">💰</div>
+                <span>Pagos rápidos</span>
+              </div>
+            </div>
+          </div>
+          <a href="/payments" className="card-link">
+            <span>Gestionar Pagos</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </Card>
 
         <Card title="Configuración de Cuenta" className="dashboard-card hover-lift">
