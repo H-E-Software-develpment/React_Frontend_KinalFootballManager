@@ -5,6 +5,7 @@ import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import StudentDashboard from './pages/student/StudentDashboard.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import UsersPage from './pages/admin/UsersPage.jsx';
+import FieldsPage from './pages/admin/FieldsPage.jsx';
 import Layout from './components/Layout.jsx';
 import ProtectedRoute from './shared/ProtectedRoute.jsx';
 
@@ -50,6 +51,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute requireAdmin={true}>
             <UsersPage />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: 'fields',
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <FieldsPage />
           </ProtectedRoute>
         )
       }
