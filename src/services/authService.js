@@ -18,9 +18,28 @@ export const authService = {
 
   async register(userData) {
     try {
-      const response = await api.post('/auth/register', userData);
+      // Ensure the data format matches backend expectations
+      const registerData = {
+        name: userData.name?.trim(),
+        email: userData.email?.trim(),
+        phone: userData.phone?.trim(),
+        password: userData.password,
+        academic: userData.academic?.trim() || undefined
+      };
+
+      // Remove undefined values
+      Object.keys(registerData).forEach(key => {
+        if (registerData[key] === undefined || registerData[key] === '') {
+          delete registerData[key];
+        }
+      });
+
+      console.log('Sending registration data:', registerData);
+
+      const response = await api.post('/auth/register', registerData);
       return response.data;
     } catch (error) {
+      console.error('Registration error:', error.response?.data || error);
       throw error.response?.data || { message: 'Registration failed' };
     }
   },

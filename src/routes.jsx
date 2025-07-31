@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import StudentDashboard from './pages/StudentDashboard.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import UsersPage from './pages/UsersPage.jsx';
 import Layout from './components/Layout.jsx';
@@ -31,6 +33,18 @@ export const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <DashboardPage />
+      },
+      {
+        path: 'admin-dashboard',
+        element: (
+          <ProtectedRoute requireAdmin={true}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: 'student-dashboard',
+        element: <StudentDashboard />
       },
       {
         path: 'profile',

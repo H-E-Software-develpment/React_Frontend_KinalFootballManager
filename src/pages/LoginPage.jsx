@@ -37,8 +37,13 @@ const LoginPage = () => {
     setErrors({});
 
     try {
-      await login(formData.email, formData.password);
-      navigate('/dashboard');
+      const response = await login(formData.email, formData.password);
+      // Redirect based on user role
+      if (response.user.role === 'ADMINSTRATOR') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/student-dashboard');
+      }
     } catch (error) {
       setErrors({
         general: error.message || 'Error al iniciar sesión'

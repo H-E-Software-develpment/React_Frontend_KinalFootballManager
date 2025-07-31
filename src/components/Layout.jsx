@@ -20,7 +20,10 @@ const Layout = () => {
           </div>
           
           <div className="nav-links">
-            <NavLink to="/dashboard" className="nav-link">
+            <NavLink
+              to={isAdmin ? "/admin-dashboard" : "/student-dashboard"}
+              className="nav-link"
+            >
               Dashboard
             </NavLink>
             <NavLink to="/profile" className="nav-link">

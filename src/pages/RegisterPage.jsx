@@ -39,12 +39,52 @@ const RegisterPage = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Las contraseñas no coinciden';
+    // Name validation
+    if (!formData.name || formData.name.trim().length < 2) {
+      newErrors.name = 'El nombre es requerido y debe tener al menos 2 caracteres';
     }
 
-    if (formData.phone && formData.phone.length !== 8) {
-      newErrors.phone = 'El teléfono debe tener 8 dígitos';
+    // Email validation
+    if (!formData.email || !formData.email.includes('@')) {
+      newErrors.email = 'Email es requerido y debe ser válido';
+    }
+
+    // Phone validation
+    if (!formData.phone) {
+      newErrors.phone = 'El número de teléfono es requerido';
+    } else if (formData.phone.length !== 8) {
+      newErrors.phone = 'El teléfono debe tener exactamente 8 dígitos';
+    }
+
+    // Strong password validation (backend requirements)
+    if (!formData.password) {
+      newErrors.password = 'La contraseña es requerida';
+    } else {
+      const passwordErrors = [];
+      if (formData.password.length < 8) {
+        passwordErrors.push('mínimo 8 caracteres');
+      }
+      if (!/[a-z]/.test(formData.password)) {
+        passwordErrors.push('al menos 1 minúscula');
+      }
+      if (!/[A-Z]/.test(formData.password)) {
+        passwordErrors.push('al menos 1 mayúscula');
+      }
+      if (!/[0-9]/.test(formData.password)) {
+        passwordErrors.push('al menos 1 número');
+      }
+      if (!/[^a-zA-Z0-9]/.test(formData.password)) {
+        passwordErrors.push('al menos 1 símbolo');
+      }
+
+      if (passwordErrors.length > 0) {
+        newErrors.password = `La contraseña debe tener: ${passwordErrors.join(', ')}`;
+      }
+    }
+
+    // Confirm password validation
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
     return newErrors;
@@ -147,16 +187,38 @@ const RegisterPage = () => {
               error={errors.academic}
             />
 
-            <Input
-              label="Contraseña"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Tu contraseña"
-              required
-              error={errors.password}
-            />
+            <div>
+              <Input
+                label="Contraseña"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Tu contraseña"
+                required
+                error={errors.password}
+              />
+              <div className="password-requirements">
+                <small>La contraseña debe tener:</small>
+                <ul>
+                  <li className={formData.password.length >= 8 ? 'valid' : ''}>
+                    Mínimo 8 caracteres
+                  </li>
+                  <li className={/[a-z]/.test(formData.password) ? 'valid' : ''}>
+                    Al menos 1 letra minúscula
+                  </li>
+                  <li className={/[A-Z]/.test(formData.password) ? 'valid' : ''}>
+                    Al menos 1 letra mayúscula
+                  </li>
+                  <li className={/[0-9]/.test(formData.password) ? 'valid' : ''}>
+                    Al menos 1 número
+                  </li>
+                  <li className={/[^a-zA-Z0-9]/.test(formData.password) ? 'valid' : ''}>
+                    Al menos 1 símbolo (!@#$%^&*)
+                  </li>
+                </ul>
+              </div>
+            </div>
 
             <Input
               label="Confirmar Contraseña"
