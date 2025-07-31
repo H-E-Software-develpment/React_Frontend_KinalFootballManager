@@ -5,6 +5,7 @@ import Input from '../components/Input.jsx';
 import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import InteractiveBackground from '../components/InteractiveBackground.jsx';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const RegisterPage = () => {
       newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
-    if (formData.phone.length !== 8) {
+    if (formData.phone && formData.phone.length !== 8) {
       newErrors.phone = 'El teléfono debe tener 8 dígitos';
     }
 
@@ -78,6 +79,7 @@ const RegisterPage = () => {
   if (success) {
     return (
       <div className="auth-page">
+        <InteractiveBackground />
         <div className="auth-container">
           <Card className="auth-card">
             <div className="success-message">
@@ -92,6 +94,7 @@ const RegisterPage = () => {
 
   return (
     <div className="auth-page">
+      <InteractiveBackground />
       <div className="auth-container">
         <Card title="Crear Cuenta" className="auth-card">
           <form onSubmit={handleSubmit} className="auth-form">

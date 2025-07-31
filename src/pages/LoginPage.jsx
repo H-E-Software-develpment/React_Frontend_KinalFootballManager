@@ -5,6 +5,7 @@ import Input from '../components/Input.jsx';
 import Button from '../components/Button.jsx';
 import Card from '../components/Card.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import InteractiveBackground from '../components/InteractiveBackground.jsx';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -49,6 +50,7 @@ const LoginPage = () => {
 
   return (
     <div className="auth-page">
+      <InteractiveBackground />
       <div className="auth-container">
         <Card title="Iniciar Sesión" className="auth-card">
           <form onSubmit={handleSubmit} className="auth-form">
