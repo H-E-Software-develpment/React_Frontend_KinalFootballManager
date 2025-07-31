@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-import DashboardPage from './pages/DashboardPage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import StudentDashboard from './pages/StudentDashboard.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -28,7 +27,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardPage />
+        element: <StudentDashboard />
       },
       {
         path: 'admin-dashboard',
